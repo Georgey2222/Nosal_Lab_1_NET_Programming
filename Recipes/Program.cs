@@ -1,6 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Recipes.Data;
 using Recipes.Components;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContextFactory<RecipesContext>(o =>
+    o.UseSqlite("Data Source=recipes.db"));
+
+builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
